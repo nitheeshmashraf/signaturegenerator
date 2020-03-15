@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan+2&display=swap" rel="stylesheet">
 
     <script>
         var app = angular.module("myApp", []);
@@ -23,6 +24,7 @@
                 $scope.checkvalues = function () {
                     if ($scope.fullname != "" && $scope.designation != "" && $scope.extention != "" &&
                         $scope.mobilenumber != "") {
+                        // $scope.mobilenumbershow = $scope.mobilenumber.substr(1);
                         $scope.hidethetemplate = true;
                         alert("Copied to clipboard");
                     } else {
@@ -30,7 +32,16 @@
                         alert("fill information")
                     }
                 }
+                $scope.prestine = function () {
+                    $scope.fullname = "";
+                    $scope.designation = "";
+                    $scope.extention = "";
+                    $scope.mobilenumber = "";
+                    $scope.hidethetemplate = false;
+
+                }
             }
+
         ]);
     </script>
 </head>
@@ -46,17 +57,22 @@
         <br>
         <div
             style="margin:auto;display: block; justify-content: center; align-items: center; text-align: center; width: 70%;">
-            <input type="text" class="form-control" ng-model="fullname" placeholder="Enter the full name here" /><br>
+            <input type="text" class="form-control" ng-model="fullname"
+                placeholder="Enter the First name and Surname here" /><br>
             <input type="text" class="form-control" ng-model="designation"
-                placeholder="Enter your designation here" /><br>
-            <input type="text" class="form-control" ng-model="extention" placeholder="Enter your Extention" /><br>
-            <input type="text" class="form-control" ng-model="mobilenumber"
-                placeholder="Enter your Mobile number" /><br>
+                placeholder="Enter your job title here" /><br>
+            <label style="float: left; font-weight: 500; color: #797878;" for="extension number">Company
+                extension</label>
+            <input type="number" class="form-control" ng-model="extention"
+                placeholder="Enter your four digit extention" /><br>
+            <label style="float: left; font-weight: 500; color: #797878;" for="mobile number">Contact number</label>
+            <input type="number" class="form-control" ng-model="mobilenumber" placeholder="05XXXXXXXX" /><br>
             <!-- 1. Define some markup -->
-            <button ng-show="!hidethetemplate" class="btn btn-default" data-clipboard-target="#signature"
+            <button ng-show=" !hidethetemplate" class="btn btn-default" data-clipboard-target="#signature"
                 ng-click="checkvalues()">Generate</button>
             <button ng-show="hidethetemplate" class="btn btn-default" data-clipboard-target="#signature"
                 ng-click="checkvalues()">Copy</button>
+            <button ng-show="hidethetemplate" class="btn btn-default" ng-click="prestine()">Clear</button>
         </div>
 
         <br><br>
@@ -90,26 +106,23 @@
                                             <td align="left" style="padding-top:10px ;"><img width="20px"
                                                     src="https://www.landmarkgroup.com/htmlmailer/Babyshop/Email_Campaign/signature/call.png"
                                                     alt="">
-                                            </td>
-                                            <td align="left" style="padding-top:10px ;">+971 4 517{{extention}}</td>
+                                                +971 4 517{{extention}}</td>
 
                                         </tr>
                                         <tr>
                                             <td align="left" style="padding-top:10px ;"><img width="20px"
                                                     src="https://www.landmarkgroup.com/htmlmailer/Babyshop/Email_Campaign/signature/mobile.png"
                                                     alt="">
-                                            </td>
-                                            <td align="left" style="padding-top:10px ;">+971 {{mobilenumber}}</td>
+                                                +971
+                                                {{mobilenumber | limitTo : 9 : 0}}</td>
                                         </tr>
                                         <tr>
                                             <td align="left" style="padding-top:10px ;"><img width="20px"
                                                     src="https://www.landmarkgroup.com/htmlmailer/Babyshop/Email_Campaign/signature/fax.png"
                                                     alt="">
-                                            </td>
-                                            <td align="left" style="padding-top:10px ;">+971 4 517550</td>
+                                                +971 4 517550</td>
                                         </tr>
                                         <tr>
-                                            <td></td>
                                             <td>
                                                 <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0"
                                                     width="100%" style="padding-top:5px ;">
@@ -175,9 +188,9 @@
                                         </tr>
                                         <tr>
                                             <td align="left"
-                                                style=" border-left: 2px solid #797878; padding-left:10px ; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 20px;  color: #000000; text-align: left;  font-weight: 300;padding-top: 10px;">
-                                                <a
-                                                    href="https://www.babyshopstores.com">https://www.babyshopstores.com</a>
+                                                style=" border-left: 2px solid #797878; padding-left:10px ; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 20px;  color: #000000 !important; text-align: left;  font-weight: 300;padding-top: 10px;">
+                                                <a style="color: black !important;"
+                                                    href="https://www.babyshopstores.com">www.babyshopstores.com</a>
                                             </td>
                                         </tr>
 
